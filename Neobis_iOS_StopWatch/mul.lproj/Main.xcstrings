@@ -1,0 +1,78 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "gBL-fb-N6v.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"Button\"; ObjectID = \"gBL-fb-N6v\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "Jx4-3n-gef.segmentTitles[0]" : {
+      "comment" : "Class = \"UISegmentedControl\"; Jx4-3n-gef.segmentTitles[0] = \"Timer\"; ObjectID = \"Jx4-3n-gef\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Timer"
+          }
+        }
+      }
+    },
+    "Jx4-3n-gef.segmentTitles[1]" : {
+      "comment" : "Class = \"UISegmentedControl\"; Jx4-3n-gef.segmentTitles[1] = \"StopWatch\"; ObjectID = \"Jx4-3n-gef\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "StopWatch"
+          }
+        }
+      }
+    },
+    "k2n-4b-u6V.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"Button\"; ObjectID = \"k2n-4b-u6V\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "ljF-Bc-0xd.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"Button\"; ObjectID = \"ljF-Bc-0xd\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "sc5-eN-si3.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"00:00:00\"; ObjectID = \"sc5-eN-si3\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "00:00:00"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
