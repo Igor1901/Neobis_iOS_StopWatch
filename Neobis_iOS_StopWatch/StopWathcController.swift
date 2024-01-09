@@ -21,6 +21,8 @@ class StopWathcController: UIViewController {
     
     var time: Timer?
     var count = 0
+    var isTimerRunning = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         updateTimerLabel()
@@ -37,22 +39,59 @@ class StopWathcController: UIViewController {
        }
 
     @IBAction func startButtonTapped(_ sender: UIButton) {
+        if isTimerRunning {
+            // Секундомер уже работает, значит это действие будет паузой
+            stopTimer()
+        } else {
+            // Секундомер не работает, начинаем его
+            startTimer()
+        }
+
     }
 
     @IBAction func stopButtonTapped(_ sender: UIButton) {
+        stopTimer()
     }
 
     @IBAction func resetButtonTapped(_ sender: UIButton) {
+        resetTimer()
     }
 
 
        @objc func updateTimer() {
-           count = count + 10
-           let time = millisecondsToMinutesSecondsMilliseconds(milliseconds: count)
-           let timeString = makeTimeString(minutes: time.0, seconds: time.1, milliseconds: time.2)
-           timerLabel.text = timeString
-           
+           if isTimerRunning {
+               count = count + 10
+               let time = millisecondsToMinutesSecondsMilliseconds(milliseconds: count)
+               let timeString = makeTimeString(minutes: time.0, seconds: time.1, milliseconds: time.2)
+               timerLabel.text = timeString
+           }
        }
+    
+    func startTimer() {
+        isTimerRunning = true
+        startButton.isEnabled = false
+        stopButton.isEnabled = true
+        resetButton.isEnabled = true
+    }
+
+    func stopTimer() {
+        isTimerRunning = false
+        startButton.isEnabled = true
+        stopButton.isEnabled = false
+        resetButton.isEnabled = true
+    }
+
+    func resetTimer() {
+        isTimerRunning = false
+        count = 0
+        let time = millisecondsToMinutesSecondsMilliseconds(milliseconds: count)
+        let timeString = makeTimeString(minutes: time.0, seconds: time.1, milliseconds: time.2)
+        timerLabel.text = timeString
+
+        startButton.isEnabled = true
+        stopButton.isEnabled = false
+        resetButton.isEnabled = false
+    }
     
     func millisecondsToMinutesSecondsMilliseconds(milliseconds: Int) -> (Int, Int, Int) {
         let totalSeconds = milliseconds / 1000
