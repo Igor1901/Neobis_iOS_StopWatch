@@ -15,59 +15,55 @@ class StopWathcController: UIViewController {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
     
-    var timer: Timer?
-    var startDate: Date?
+    var stopWatch = Date(timeIntervalSinceReferenceDate: 0)
     
+  
+    
+    var time: Timer?
+    var count = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         updateTimerLabel()
     }
-    func updateTimerLabel() {
-           var elapsedTime: TimeInterval = 0
+    
+    func updateTimerLabel() { // обновление времени на лэйбле
 
-           if let startDate = startDate {
-               elapsedTime = -startDate.timeIntervalSinceNow
-           }
+        time = Timer.scheduledTimer(timeInterval: 0.1,
+                                    target: self,
+                                    selector: #selector(updateTimer), 
+                                    userInfo: nil,
+                                    repeats: true)
 
-           let minutes = Int(elapsedTime / 60)
-           let seconds = Int(elapsedTime.truncatingRemainder(dividingBy: 60))
-           let milliseconds = Int((elapsedTime * 1000).truncatingRemainder(dividingBy: 1000))
-
-           timerLabel.text = String(format: "%02d:%02d.%03d", minutes, seconds, milliseconds)
        }
 
     @IBAction func startButtonTapped(_ sender: UIButton) {
-        // Старт таймера
-        startDate = Date()
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        startButton.isEnabled = false
-        stopButton.isEnabled = true
     }
 
     @IBAction func stopButtonTapped(_ sender: UIButton) {
-        // Остановка таймера
-        timer?.invalidate()
-        timer = nil
-        startDate = nil
-        startButton.isEnabled = true
-        stopButton.isEnabled = false
     }
 
-
     @IBAction func resetButtonTapped(_ sender: UIButton) {
-        // Сброс таймера
-        timer?.invalidate()
-        timer = nil
-        startDate = nil
-        startButton.isEnabled = true
-        stopButton.isEnabled = false
-        updateTimerLabel()
     }
 
 
        @objc func updateTimer() {
-           updateTimerLabel()
+           count = count + 100
+           let time = millisecondsToMinutesSecondsMilliseconds(milliseconds: count)
+           let timeString = makeTimeString(minutes: time.0, seconds: time.1, milliseconds: time.2)
+           timerLabel.text = timeString
+           
        }
+    
+    func millisecondsToMinutesSecondsMilliseconds(milliseconds: Int) -> (Int, Int, Int) {
+        let totalSeconds = milliseconds / 1000
+        return ((totalSeconds / 60), (totalSeconds % 60), (milliseconds % 1000))
+    }
+    
+    func makeTimeString(minutes: Int, seconds: Int, milliseconds: Int) -> String {
+        let timeString = String(format: "%02d:%02d:%02d", minutes, seconds, milliseconds % 1000 / 10)
+        return timeString
+    }
+    
    }
 
 
