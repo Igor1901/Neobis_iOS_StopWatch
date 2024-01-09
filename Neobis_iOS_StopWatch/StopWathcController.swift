@@ -28,7 +28,7 @@ class StopWathcController: UIViewController {
     
     func updateTimerLabel() { // обновление времени на лэйбле
 
-        time = Timer.scheduledTimer(timeInterval: 0.1,
+        time = Timer.scheduledTimer(timeInterval: 0.01,
                                     target: self,
                                     selector: #selector(updateTimer), 
                                     userInfo: nil,
@@ -47,7 +47,7 @@ class StopWathcController: UIViewController {
 
 
        @objc func updateTimer() {
-           count = count + 100
+           count = count + 10
            let time = millisecondsToMinutesSecondsMilliseconds(milliseconds: count)
            let timeString = makeTimeString(minutes: time.0, seconds: time.1, milliseconds: time.2)
            timerLabel.text = timeString
