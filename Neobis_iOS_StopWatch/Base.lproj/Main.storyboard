@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -61,22 +61,29 @@
                                     <segment title="StopWatch"/>
                                 </segments>
                             </segmentedControl>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vp3-m6-eYv">
+                                <rect key="frame" x="36" y="318" width="320" height="216"/>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Jx4-3n-gef" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DiR-lT-Tqa"/>
+                            <constraint firstItem="Vp3-m6-eYv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JO6-3p-ITU"/>
                             <constraint firstItem="eyQ-fZ-pVX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SfF-hq-qhI"/>
                             <constraint firstItem="sc5-eN-si3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XHu-7Z-AQ6"/>
+                            <constraint firstItem="Vp3-m6-eYv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ywq-l7-fWt"/>
                             <constraint firstItem="Jx4-3n-gef" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="122" id="bZ9-UU-FOz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eyQ-fZ-pVX" secondAttribute="bottom" constant="50" id="byD-X9-ktH"/>
                             <constraint firstItem="sc5-eN-si3" firstAttribute="top" secondItem="Jx4-3n-gef" secondAttribute="bottom" constant="59" id="da1-xF-DVh"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="pickerView" destination="Vp3-m6-eYv" id="ape-B0-iq8"/>
                         <outlet property="resetButton" destination="ljF-Bc-0xd" id="G51-wz-HUy"/>
                         <outlet property="startButton" destination="k2n-4b-u6V" id="Dsy-vi-zen"/>
                         <outlet property="stopButton" destination="gBL-fb-N6v" id="qvw-Lh-HvM"/>
+                        <outlet property="stopWatch" destination="Jx4-3n-gef" id="hEG-Vp-T3P"/>
                         <outlet property="timerLabel" destination="sc5-eN-si3" id="cPt-ab-tTz"/>
                     </connections>
                 </viewController>

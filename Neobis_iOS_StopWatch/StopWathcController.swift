@@ -7,25 +7,46 @@
 
 import UIKit
 
-class StopWathcController: UIViewController {
+class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    
+    // MARK: - interface elements
+    @IBOutlet weak var stopWatch: UISegmentedControl!
+    
     @IBOutlet weak var timerLabel: UILabel!
     
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
     
-    var stopWatch = Date(timeIntervalSinceReferenceDate: 0)
+    @IBOutlet weak var pickerView: UIPickerView!
+    
     
   
     
     var time: Timer?
     var count = 0
     var isTimerRunning = false
+    
+    
+    let hoursData = Array(0...23)
+    let minutesData = Array(0...59)
+    let secondsData = Array(0...59)
+    
+    var selectedHour = 0
+    var selectedMinute = 0
+    var selectedSecond = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         updateTimerLabel()
+        
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
     }
     
     func updateTimerLabel() { // обновление времени на лэйбле
@@ -102,6 +123,60 @@ class StopWathcController: UIViewController {
         let timeString = String(format: "%02d:%02d:%02d", minutes, seconds, milliseconds % 1000 / 10)
         return timeString
     }
+    
+    // MARK: - UIPickerViewDataSource
+     
+     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+         return 3 // количество колонок
+     }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch component {
+        case 0:
+            return hoursData.count
+        case 1:
+            return minutesData.count
+        case 2:
+            return secondsData.count
+        default:
+            return 0
+        }
+    }
+    
+    // MARK: - UIPickerViewDelegate
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch component {
+        case 0:
+            return "\(hoursData[row])"
+        case 1:
+            return "\(minutesData[row])"
+        case 2:
+            return "\(secondsData[row])"
+        default:
+            return nil
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch component {
+        case 0:
+            selectedHour = hoursData[row]
+        case 1:
+            selectedMinute = minutesData[row]
+        case 2:
+            selectedSecond = secondsData[row]
+        default:
+            break
+        }
+        
+        updateSelectedValueLabel()
+    }
+    
+    func updateSelectedValueLabel() {
+        timerLabel.text = String(format: "%02d:%02d:%02d", selectedHour, selectedMinute, selectedSecond)
+    }
+    
     
    }
 
