@@ -46,12 +46,22 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.26666666666666666" green="0.75294117647058822" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-eN-si3">
-                                <rect key="frame" x="110" y="271" width="173" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-eN-si3">
+                                <rect key="frame" x="66.666666666666686" y="262" width="260" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="54I-dB-6Pa"/>
+                                    <constraint firstAttribute="height" constant="70" id="s8e-vr-hG2"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="00:00:00">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="55"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jx4-3n-gef">
@@ -62,35 +72,42 @@
                                 </segments>
                             </segmentedControl>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vp3-m6-eYv">
-                                <rect key="frame" x="36.666666666666657" y="318" width="320" height="216"/>
+                                <rect key="frame" x="10" y="342" width="373" height="216"/>
                             </pickerView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="timer" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bAn-L7-8Jx">
-                                <rect key="frame" x="164" y="109" width="65" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bAn-L7-8Jx">
+                                <rect key="frame" x="171.66666666666666" y="115" width="50" height="48.666666666666686"/>
                                 <color key="tintColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4we-Mo-FNf"/>
+                                    <constraint firstAttribute="width" constant="50" id="MFX-Wv-r7R"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.26666666666666666" green="0.75294117647058822" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Vp3-m6-eYv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="BZ4-wt-aOo"/>
+                            <constraint firstItem="Vp3-m6-eYv" firstAttribute="top" secondItem="sc5-eN-si3" secondAttribute="bottom" constant="10" id="Cmc-u4-LEF"/>
                             <constraint firstItem="Jx4-3n-gef" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DiR-lT-Tqa"/>
+                            <constraint firstItem="bAn-L7-8Jx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="55" id="GeS-Cg-VjE"/>
                             <constraint firstItem="Vp3-m6-eYv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JO6-3p-ITU"/>
+                            <constraint firstItem="bAn-L7-8Jx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="K0m-Og-M2G"/>
                             <constraint firstItem="eyQ-fZ-pVX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SfF-hq-qhI"/>
                             <constraint firstItem="sc5-eN-si3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XHu-7Z-AQ6"/>
-                            <constraint firstItem="Vp3-m6-eYv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ywq-l7-fWt"/>
-                            <constraint firstItem="Jx4-3n-gef" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="122" id="bZ9-UU-FOz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eyQ-fZ-pVX" secondAttribute="bottom" constant="50" id="byD-X9-ktH"/>
-                            <constraint firstItem="sc5-eN-si3" firstAttribute="top" secondItem="Jx4-3n-gef" secondAttribute="bottom" constant="59" id="da1-xF-DVh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vp3-m6-eYv" secondAttribute="trailing" constant="10" id="eHt-vF-ibT"/>
+                            <constraint firstItem="sc5-eN-si3" firstAttribute="top" secondItem="Jx4-3n-gef" secondAttribute="bottom" constant="50" id="ioE-LB-3Bd"/>
+                            <constraint firstItem="Jx4-3n-gef" firstAttribute="top" secondItem="bAn-L7-8Jx" secondAttribute="bottomMargin" constant="25" id="yNK-60-cyX"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="logoImage" destination="bAn-L7-8Jx" id="8Gd-YI-aOw"/>
-                        <outlet property="pickerView" destination="Vp3-m6-eYv" id="ape-B0-iq8"/>
+                        <outlet property="pickerView" destination="Vp3-m6-eYv" id="6D6-wv-Ord"/>
                         <outlet property="resetButton" destination="ljF-Bc-0xd" id="G51-wz-HUy"/>
                         <outlet property="segmentedControl" destination="Jx4-3n-gef" id="RpZ-5p-1a3"/>
                         <outlet property="startButton" destination="k2n-4b-u6V" id="Dsy-vi-zen"/>
                         <outlet property="stopButton" destination="gBL-fb-N6v" id="qvw-Lh-HvM"/>
-                        <outlet property="timerLabel" destination="sc5-eN-si3" id="cPt-ab-tTz"/>
+                        <outlet property="timeLabel" destination="sc5-eN-si3" id="P8S-8l-ZAC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -105,9 +122,6 @@
         <image name="timer" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

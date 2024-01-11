@@ -8,42 +8,35 @@
 import UIKit
 
 class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     
     // MARK: - interface elements
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var logoImage: UIImageView!
     
-    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
     
+    
     @IBOutlet weak var pickerView: UIPickerView!
     
-    
-  
-    
+    //for stopWatch
     var time: Timer?
     var count = 0
+    var isStopWatchRunning = false
     
+    // for timer
     var countDownSeconds: Int = 0
+    var initialCountDownSeconds: Int = 0
+    var isTimerRunning: Bool = false
     
-    var isTimerRunning = false
     
-    
-    let hoursData = Array(0...23)
-    let minutesData = Array(0...59)
-    let secondsData = Array(0...59)
-    
-    var selectedHour = 0
-    var selectedMinute = 0
-    var selectedSecond = 0
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        //updateTimerLabel()
+        //updateStopWatchLabel()
         
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
         
@@ -51,6 +44,7 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         pickerView.dataSource = self
         
         updateUIForSelectedSegment()
+        //updateTimerLabelFromPicker()
         
     }
     
@@ -58,98 +52,117 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         // Вызывается при изменении значения UISegmentedControl
         updateUIForSelectedSegment()
     }
-
+    
     func updateUIForSelectedSegment() {
         // Обновляем UI в зависимости от выбранного сегмента
         let selectedIndex = segmentedControl.selectedSegmentIndex
         if selectedIndex == 0 {
             // Режим секундомера
-            timerLabel.text = "00:00:00"
+            timeLabel.text = "00:00:00"
             pickerView.isHidden = true
             startButton.isEnabled = true
             stopButton.isEnabled = false
             resetButton.isEnabled = false
             logoImage.image = UIImage(systemName: "stopwatch")
-            //updateTimerLabel() //???
+            updateStopWatchLabel() //???
         } else {
             // Режим пикера
             pickerView.isHidden = false
-            startButton.isEnabled = false
-            stopButton.isEnabled = true
-            resetButton.isEnabled = true
-            logoImage.image = UIImage(systemName: "timer")
             updateTimerLabelFromPicker()
+            logoImage.image = UIImage(systemName: "timer")
         }
-
+        
         // Сброс секундомера, если он был запущен
-        stopTimer()
+        stopStopWatch()
     }
-    func updateTimerLabel() { // обновление времени на лэйбле
-
+    func updateStopWatchLabel() { // обновление времени на лэйбле
+        
         time = Timer.scheduledTimer(timeInterval: 0.01,
                                     target: self,
-                                    selector: #selector(updateTimer), 
+                                    selector: #selector(updateStopWatch), 
                                     userInfo: nil,
                                     repeats: true)
-
-       }
-
+        
+    }
+    
     @IBAction func startButtonTapped(_ sender: UIButton) {
         
         if segmentedControl.selectedSegmentIndex == 0 {
-            if isTimerRunning {
+            if isStopWatchRunning {
                 // Секундомер уже работает, значит это действие будет паузой
-                stopTimer()
+                stopStopWatch()
             } else {
                 // Секундомер не работает, начинаем его
-                startTimer()
+                startStopWatch()
             }
         } else {
             // Запуск отсчета времени из пикера
-            startCountdownFromPicker()
+            if isTimerRunning {
+                // Таймер уже работает, значит это действие будет паузой
+                pauseTimer()
+            } else {
+                // Таймер не работает, начинаем его
+                startTimer()
+            }
         }
-
+        
     }
-
-    @IBAction func stopButtonTapped(_ sender: UIButton) {
-        stopTimer()
-    }
-
-    @IBAction func resetButtonTapped(_ sender: UIButton) {
-        resetTimer()
-    }
-
-
-       @objc func updateTimer() {
-           if isTimerRunning {
-               count = count + 10
-               let time = millisecondsToMinutesSecondsMilliseconds(milliseconds: count)
-               let timeString = makeTimeString(minutes: time.0, seconds: time.1, milliseconds: time.2)
-               timerLabel.text = timeString
-           }
-       }
     
-    func startTimer() {
-        isTimerRunning = true
+    @IBAction func stopButtonTapped(_ sender: UIButton) {
+        stopStopWatch()
+        let selectedIndex = segmentedControl.selectedSegmentIndex
+        if selectedIndex == 0 {
+            // Режим секундомера
+            stopStopWatch()
+        } else {
+            // Режим пикера
+            pauseTimer()
+        }
+    }
+    
+    @IBAction func resetButtonTapped(_ sender: UIButton) {
+        let selectedIndex = segmentedControl.selectedSegmentIndex
+        if selectedIndex == 0 {
+            // Режим секундомера
+            resetStopWatch()
+        } else {
+            // Режим пикера
+            resetTimer()
+        }
+        
+    }
+    
+    
+    @objc func updateStopWatch() {
+        if isStopWatchRunning {
+            count = count + 10
+            let time = millisecondsToMinutesSecondsMilliseconds(milliseconds: count)
+            let timeString = makeTimeString(minutes: time.0, seconds: time.1, milliseconds: time.2)
+            timeLabel.text = timeString
+        }
+    }
+    
+    func startStopWatch() {
+        isStopWatchRunning = true
         startButton.isEnabled = false
         stopButton.isEnabled = true
         resetButton.isEnabled = true
     }
-
-    func stopTimer() {
-        isTimerRunning = false
+    
+    func stopStopWatch() {
+        isStopWatchRunning = false
         startButton.isEnabled = true
         stopButton.isEnabled = false
         resetButton.isEnabled = true
     }
-
-    func resetTimer() {
-        isTimerRunning = false
+    
+    func resetStopWatch() {
+        isStopWatchRunning = false
         count = 0
         let time = millisecondsToMinutesSecondsMilliseconds(milliseconds: count)
         let timeString = makeTimeString(minutes: time.0, seconds: time.1, milliseconds: time.2)
-        timerLabel.text = timeString
-
+        timeLabel.text = timeString
+        
         startButton.isEnabled = true
         stopButton.isEnabled = false
         resetButton.isEnabled = false
@@ -166,79 +179,84 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     //MARK: - Picker
-    func updateTimerLabelFromPicker(){
+    
+    // MARK: - Timer Handling
+    
+    func updateTimerLabelFromPicker() {
         let selectedRowHour = pickerView.selectedRow(inComponent: 0)
         let selectedRowMinute = pickerView.selectedRow(inComponent: 1)
         let selectedRowSecond = pickerView.selectedRow(inComponent: 2)
         
         countDownSeconds = selectedRowHour * 3600 + selectedRowMinute * 60 + selectedRowSecond
-        timerLabel.text = String(format: "%02d:%02d:%02d", selectedRowHour, selectedRowMinute, selectedRowSecond)
+        initialCountDownSeconds = countDownSeconds
+        updateTimeLabel()
     }
     
-    func startCountdownFromPicker() {
-        // Запуск отсчета времени из пикера
-        time = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        isTimerRunning = true
-        startButton.isEnabled = false
-        stopButton.isEnabled = true
-        resetButton.isEnabled = true
+    func updateTimeLabel() {
+        let time = secondsToHoursMinutesSeconds(seconds: countDownSeconds)
+        let timeString = String(format: "%02d:%02d:%02d", time.0, time.1, time.2)
+        timeLabel.text = timeString
     }
     
-    // MARK: - UIPickerViewDataSource
-     
-     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-         return 3 // количество колонок
-     }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch component {
-        case 0:
-            return hoursData.count
-        case 1:
-            return minutesData.count
-        case 2:
-            return secondsData.count
-        default:
-            return 0
-        }
-    }
-    
-    // MARK: - UIPickerViewDelegate
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch component {
-        case 0:
-            return "\(hoursData[row])"
-        case 1:
-            return "\(minutesData[row])"
-        case 2:
-            return "\(secondsData[row])"
-        default:
-            return nil
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch component {
-        case 0:
-            selectedHour = hoursData[row]
-        case 1:
-            selectedMinute = minutesData[row]
-        case 2:
-            selectedSecond = secondsData[row]
-        default:
-            break
-        }
+    func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int) {
+        let hours = seconds / 3600
+        let minutes = (seconds % 3600) / 60
+        let seconds = seconds % 60
         
-        updateSelectedValueLabel()
+        return (hours, minutes, seconds)
     }
     
-    func updateSelectedValueLabel() {
-        timerLabel.text = String(format: "%02d:%02d:%02d", selectedHour, selectedMinute, selectedSecond)
-    }
-    
-    
+    // MARK: - Start Countdown
+
+   func startTimer() {
+       isTimerRunning = true
+       pickerView.isHidden = true
+       time = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
+   }
+
+   func pauseTimer() {
+       isTimerRunning = false
+       time?.invalidate()
    }
 
 
+   func resetTimer() {
+       isTimerRunning = false
+       pickerView.isHidden = false
+       countDownSeconds = initialCountDownSeconds
+       time?.invalidate()
+       updateTimeLabel()
+   }
 
+   @objc func updateCountdown() {
+       if countDownSeconds > 0 {
+           countDownSeconds -= 1
+           updateTimeLabel()
+       } else {
+           pauseTimer()
+           // Таймер завершен, выполните необходимые действия
+       }
+   }
+
+
+    
+    // MARK: - UIPickerViewDataSource and UIPickerViewDelegate
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 3
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return component == 0 ? 24 : 60
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(format: "%2d", row)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        updateTimerLabelFromPicker()
+    }
+    
+    
+    
+}
