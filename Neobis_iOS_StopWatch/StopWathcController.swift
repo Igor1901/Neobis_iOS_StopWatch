@@ -36,7 +36,6 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //updateStopWatchLabel()
         
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
         
@@ -44,7 +43,6 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         pickerView.dataSource = self
         
         updateUIForSelectedSegment()
-        //updateTimerLabelFromPicker()
         
     }
     
@@ -60,9 +58,6 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             // Режим секундомера
             timeLabel.text = "00:00:00"
             pickerView.isHidden = true
-            startButton.isEnabled = true
-            stopButton.isEnabled = true
-            resetButton.isEnabled = false
             logoImage.image = UIImage(systemName: "stopwatch")
             updateStopWatchLabel() //???
         } else {
@@ -75,6 +70,7 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         // Сброс секундомера, если он был запущен
         stopStopWatch()
+        
     }
     func updateStopWatchLabel() { // обновление времени на лэйбле
         
@@ -100,7 +96,7 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             // Запуск отсчета времени из пикера
             if isTimerRunning {
                 // Таймер уже работает, значит это действие будет паузой
-                pauseTimer()
+                stopTimer()
             } else {
                 // Таймер не работает, начинаем его
                 startTimer()
@@ -116,7 +112,7 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             stopStopWatch()
         } else if selectedIndex == 1 {
             // Режим пикера
-            pauseTimer()
+            stopTimer()
         }
     }
     
@@ -180,7 +176,7 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     //MARK: - Picker
     
-    // MARK: - Timer Handling
+    // MARK: Timer Handling
     
     func updateTimerLabelFromPicker() {
         let selectedRowHour = pickerView.selectedRow(inComponent: 0)
@@ -211,11 +207,17 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
    func startTimer() {
        isTimerRunning = true
        pickerView.isHidden = true
+       startButton.isEnabled = false
+       stopButton.isEnabled = true
+       resetButton.isEnabled = true
        time = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
    }
 
-   func pauseTimer() {
+   func stopTimer() {
        isTimerRunning = false
+       startButton.isEnabled = true
+       stopButton.isEnabled = false
+       resetButton.isEnabled = true
        time?.invalidate()
    }
 
@@ -223,6 +225,9 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
    func resetTimer() {
        isTimerRunning = false
        pickerView.isHidden = false
+       startButton.isEnabled = true
+       stopButton.isEnabled = false
+       resetButton.isEnabled = false
        countDownSeconds = initialCountDownSeconds
        time?.invalidate()
        updateTimeLabel()
@@ -233,7 +238,7 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
            countDownSeconds -= 1
            updateTimeLabel()
        } else {
-           pauseTimer()
+           stopTimer()
            // Таймер завершен, выполните необходимые действия
        }
    }
@@ -256,7 +261,6 @@ class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         updateTimerLabelFromPicker()
     }
-    
     
     
 }
