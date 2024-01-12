@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,11 +13,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="StopWathcController" customModule="Neobis_iOS_StopWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eyQ-fZ-pVX">
-                                <rect key="frame" x="49.666666666666657" y="690" width="294" height="78"/>
+                                <rect key="frame" x="68" y="770" width="294" height="78"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljF-Bc-0xd">
                                         <rect key="frame" x="0.0" y="0.0" width="88" height="78"/>
@@ -34,7 +34,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="pause-button"/>
                                         <connections>
-                                            <action selector="stopButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FGU-oQ-Bug"/>
+                                            <action selector="stopButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jy3-YI-bO9"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2n-4b-u6V">
@@ -48,34 +48,28 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.26666666666666666" green="0.75294117647058822" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-eN-si3">
-                                <rect key="frame" x="66.666666666666686" y="262" width="260" height="70"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-eN-si3">
+                                <rect key="frame" x="85" y="262" width="260" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="54I-dB-6Pa"/>
-                                    <constraint firstAttribute="height" constant="70" id="s8e-vr-hG2"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="GAq-iP-LfN"/>
+                                    <constraint firstAttribute="height" constant="70" id="RiM-La-z6w"/>
                                 </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="00:00:00">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="system" size="55"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="55"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jx4-3n-gef">
-                                <rect key="frame" x="110" y="181" width="173" height="32"/>
+                                <rect key="frame" x="128.66666666666666" y="181" width="172.99999999999997" height="32"/>
                                 <segments>
                                     <segment title="Timer"/>
                                     <segment title="StopWatch"/>
                                 </segments>
                             </segmentedControl>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vp3-m6-eYv">
-                                <rect key="frame" x="10" y="342" width="373" height="216"/>
+                                <rect key="frame" x="10" y="342" width="410" height="216"/>
                             </pickerView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bAn-L7-8Jx">
-                                <rect key="frame" x="171.66666666666666" y="115" width="50" height="48.666666666666686"/>
+                                <rect key="frame" x="190" y="115" width="50" height="48.666666666666686"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="4we-Mo-FNf"/>
@@ -106,7 +100,7 @@
                         <outlet property="resetButton" destination="ljF-Bc-0xd" id="G51-wz-HUy"/>
                         <outlet property="segmentedControl" destination="Jx4-3n-gef" id="RpZ-5p-1a3"/>
                         <outlet property="startButton" destination="k2n-4b-u6V" id="Dsy-vi-zen"/>
-                        <outlet property="stopButton" destination="gBL-fb-N6v" id="qvw-Lh-HvM"/>
+                        <outlet property="stopButton" destination="gBL-fb-N6v" id="WnT-lC-40o"/>
                         <outlet property="timeLabel" destination="sc5-eN-si3" id="P8S-8l-ZAC"/>
                     </connections>
                 </viewController>
