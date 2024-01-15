@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		F112A28C2B3FB486009DA748 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A28B2B3FB486009DA748 /* AppDelegate.swift */; };
 		F112A28E2B3FB486009DA748 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A28D2B3FB486009DA748 /* SceneDelegate.swift */; };
-		F112A2902B3FB486009DA748 /* StopWathcController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A28F2B3FB486009DA748 /* StopWathcController.swift */; };
+		F112A2902B3FB486009DA748 /* StopWatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A28F2B3FB486009DA748 /* StopWatchController.swift */; };
 		F112A2952B3FB487009DA748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F112A2942B3FB487009DA748 /* Assets.xcassets */; };
 		F112A2982B3FB487009DA748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F112A2962B3FB487009DA748 /* LaunchScreen.storyboard */; };
 		F17AC70E2B4B152C00C2E183 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F17AC7102B4B152C00C2E183 /* Main.storyboard */; };
@@ -19,7 +19,7 @@
 		F112A2882B3FB486009DA748 /* Neobis_iOS_StopWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neobis_iOS_StopWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F112A28B2B3FB486009DA748 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F112A28D2B3FB486009DA748 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F112A28F2B3FB486009DA748 /* StopWathcController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWathcController.swift; sourceTree = "<group>"; };
+		F112A28F2B3FB486009DA748 /* StopWatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchController.swift; sourceTree = "<group>"; };
 		F112A2942B3FB487009DA748 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F112A2972B3FB487009DA748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F112A2992B3FB487009DA748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 			children = (
 				F112A28B2B3FB486009DA748 /* AppDelegate.swift */,
 				F112A28D2B3FB486009DA748 /* SceneDelegate.swift */,
-				F112A28F2B3FB486009DA748 /* StopWathcController.swift */,
+				F112A28F2B3FB486009DA748 /* StopWatchController.swift */,
 				F17AC7102B4B152C00C2E183 /* Main.storyboard */,
 				F112A2942B3FB487009DA748 /* Assets.xcassets */,
 				F112A2962B3FB487009DA748 /* LaunchScreen.storyboard */,
@@ -138,7 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F112A2902B3FB486009DA748 /* StopWathcController.swift in Sources */,
+				F112A2902B3FB486009DA748 /* StopWatchController.swift in Sources */,
 				F112A28C2B3FB486009DA748 /* AppDelegate.swift in Sources */,
 				F112A28E2B3FB486009DA748 /* SceneDelegate.swift in Sources */,
 			);

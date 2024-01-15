@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StopWathcController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class StopWatchController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     
     // MARK: - interface elements
